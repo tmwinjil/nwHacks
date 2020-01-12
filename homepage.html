@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+      /***********************************************
+      * Drop Down Date select script- by JavaScriptKit.com
+      * This notice MUST stay intact for use
+      * Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
+      ***********************************************/
+      
+      var monthtext=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+      var monthvalue = ['00','01','02','03','04','05','06','07','08','09','10','11','12']
+      function populatedropdown(monthfield, yearfield){
+      var today=new Date()
+      var thisyear=1950
+      var monthfield=document.getElementById(monthfield)
+      var yearfield=document.getElementById(yearfield)
+      for (var m=0; m<12; m++)
+      monthfield.options[m]=new Option(monthtext[m], monthvalue[m])
+      monthfield.options[today.getMonth()]=new Option(monthtext[today.getMonth()], monthvalue[today.getMonth()], true, true) //select today's month
+      
+      for (var y=0; y<80; y++){
+      yearfield.options[y]=new Option(thisyear, thisyear)
+      thisyear+=1
+      }
+      yearfield.options[80]=new Option(thisyear, thisyear, true, true) //select today's year
+      }
+      </script>
+    <style>
+      #map {
+        width: 100%;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>FireStorm Demo</h3>
+    <form action="" name="someform">
+      <select id="monthdropdown">
+      </select> 
+      <select id="yeardropdown">
+      </select> 
+      </form>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+         
+          var loc = {lat: 49.246, lng: -123.116};
+          // The map, centered at Uluru
+          var map = new google.maps.Map(
+              document.getElementById('map'), {zoom: 10, center: loc});
+          // The marker, positioned at Uluru
+          var marker = new google.maps.Marker({position: loc, map: map});
+        }
+            </script>
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNaFMlDI05Tj63K38x0bBPBLm8kylz4Ds&callback=initMap">
+            </script>
+      
+      <script type="text/javascript">
+      
+      //populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+      window.onload=function(){
+      populatedropdown("monthdropdown", "yeardropdown")
+      }
+      </script>
+  </body>
+</html>
